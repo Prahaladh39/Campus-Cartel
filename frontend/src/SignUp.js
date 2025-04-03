@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router"; // Import useNavigate for redirection
-import { auth, db } from "./FirebaseConfig"; // Import Firebase
+import { Link, useNavigate } from "react-router"; 
+import { auth, db } from "./FirebaseConfig"; 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
-import { ToastContainer, toast } from "react-toastify"; // Import Toastify
+import { ToastContainer, toast } from "react-toastify"; 
 import logo from "./logo.webp";
 const Signup = () => {
   const [formData, setFormData] = useState({

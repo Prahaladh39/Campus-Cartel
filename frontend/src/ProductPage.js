@@ -43,7 +43,7 @@ function ProductPage() {
           image:
             product.images && product.images.length > 0
               ? product.images[0]
-              : "https://via.placeholder.com/150", // Fallback image
+              : "https://via.placeholder.com/150", 
           timestamp: new Date(),
         });
         toast.success("Added to Cart!");
@@ -86,19 +86,22 @@ function ProductPage() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/create-order", {
-        order_id: `ORDER_${Date.now()}`, // Unique order ID
-        order_amount: product.price,
-        order_currency: "INR",
-        customer_details: {
-          customer_id: user.uid,
-          customer_email: user.email,
-          customer_phone: product.seller.contact || "9999999999",
-        },
-      });
+      const response = await axios.post(
+        "https://backend-k8gw43p49-prahaladhs-projects.vercel.app",
+        {
+          order_id: `ORDER_${Date.now()}`, 
+          order_amount: product.price,
+          order_currency: "INR",
+          customer_details: {
+            customer_id: user.uid,
+            customer_email: user.email,
+            customer_phone: product.seller.contact || "9999999999",
+          },
+        }
+      );
 
       if (response.data.payment_session_id) {
-        const cashfree = await load({ mode: "sandbox" }); // Use "production" for live payments
+        const cashfree = await load({ mode: "sandbox" }); 
 
         cashfree.checkout({
           paymentSessionId: response.data.payment_session_id,

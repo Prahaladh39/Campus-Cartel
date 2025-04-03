@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, db } from "./FirebaseConfig"; // Firebase connection
+import { auth, db } from "./FirebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,8 +22,6 @@ const Login = () => {
       );
       setProgress(70);
       const user = userCredential.user;
-
-      // Store login details in Firestore under "login" collection
       await addDoc(collection(db, "login"), {
         email: user.email,
         userId: user.uid,
@@ -35,11 +33,11 @@ const Login = () => {
         autoClose: 3000,
       });
       setTimeout(() => {
-        setProgress(100); // Complete progress
-        navigate("/home"); // Redirect after slight delay
+        setProgress(100);
+        navigate("/home");
       }, 1000);
     } catch (error) {
-      setProgress(0); // Reset progress on error
+      setProgress(0);
       toast.error("Invalid credentials. Try again.");
     }
   };

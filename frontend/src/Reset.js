@@ -6,13 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState(""); // OTP for verification
+  const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [resetLinkSent, setResetLinkSent] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
-
-  // Simulating an OTP (In real app, use Firebase functions to send OTP via email)
   const generatedOtp = "123456";
 
   const handleResetRequest = async () => {

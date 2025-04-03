@@ -33,7 +33,7 @@ const Home = () => {
   useEffect(() => {
     const fetchRecentlyAdded = async () => {
       try {
-        const productsRef = collection(db, "Seller"); // Fetch from your Firebase collection
+        const productsRef = collection(db, "Seller");
         const q = query(productsRef, orderBy("uploadDate", "desc"));
         const querySnapshot = await getDocs(q);
         const productList = querySnapshot.docs.map((doc) => ({
@@ -152,38 +152,18 @@ const Home = () => {
         </div>
 
         <div className={`nav-links ${isMobileOpen ? "open" : ""}`}>
-          {/*
-              <Link className="icon" to="chat">
-              💬
-            </Link>
-            {/* Notification Bell 
-            <div
-              className="icon notif-icon"
-              onClick={() => setIsNotifOpen(!isNotifOpen)}
-            >
-              🔔
-            </div>
-            */}
-
-          {isNotifOpen && (
-            <div className="dropdown dropdown-notif">
-              <p>You have new messages</p>
-              <p>Someone liked your product</p>
-            </div>
-          )}
-
-          {/* Profile Icon */}
-          <div
-            className="icon profile-icon"
+          <Link
+            to="ProfilePage"
+            className="cart-btn"
             onClick={() => setIsProfileOpen(!isProfileOpen)}
           >
-            👤
-          </div>
-          {isProfileOpen && (
+            Profile
+          </Link>
+          {/*isProfileOpen && (
             <div className="dropdown dropdown-profile">
               <Link to="ProfilePage">👤 Profile</Link>
             </div>
-          )}
+          )*/}
 
           <Link className="cart-btn" to="/cart">
             🛒 Cart
@@ -353,7 +333,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Right Section - Quick Links */}
         <div className="footer-right">
           <h3>Quick Links</h3>
           <ul>

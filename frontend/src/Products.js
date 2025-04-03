@@ -19,7 +19,7 @@ const Products = () => {
         );
         const querySnapshot = await getDocs(q);
         const items = querySnapshot.docs.map((doc) => ({
-          id: doc.data().id, // Using your custom ID from the database
+          id: doc.data().id, 
           ...doc.data(),
         }));
 

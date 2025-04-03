@@ -29,7 +29,6 @@ const ProfilePage = () => {
     }
   }, [userData]);
 
-  // ✅ Fetch User Data
   const fetchUserData = async () => {
     const user = auth.currentUser;
     if (user) {
@@ -49,7 +48,6 @@ const ProfilePage = () => {
     }
   };
 
-  // ✅ Fetch Listings from Seller Collection using Correct Doc ID
   const fetchListings = async () => {
     try {
       const listingsRef = collection(db, "Seller");
@@ -72,7 +70,6 @@ const ProfilePage = () => {
     }
   };
 
-  // ✅ Handle User Profile Edit and Save
   const handleEditProfileClick = () => {
     setIsEditingProfile(true);
   };
@@ -97,7 +94,6 @@ const ProfilePage = () => {
     setUpdatedUserData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ✅ Handle Product Edit and Save
   const handleEditProductClick = (product) => {
     setEditingProduct(product.firestoreId); // Use Firestore doc ID
     setUpdatedProductData(product);
@@ -124,7 +120,6 @@ const ProfilePage = () => {
     }
   };
 
-  // ✅ Handle Product Delete
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "Seller", id));

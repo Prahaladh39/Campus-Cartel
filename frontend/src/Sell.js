@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
-import { db, storage } from "./FirebaseConfig"; // Import Firebase configuration
+import { Link } from "react-router"; // Import Firebase configuration
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -55,8 +54,8 @@ const Sell = () => {
     for (const file of imageFiles) {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "Prahaladh"); // Replace with Cloudinary preset
-      formData.append("cloud_name", "ddcr1kgvx"); // Replace with Cloudinary cloud name
+      formData.append("upload_preset", "Prahaladh");
+      formData.append("cloud_name", "ddcr1kgvx");
 
       try {
         const res = await axios.post(
@@ -100,7 +99,7 @@ const Sell = () => {
 
       toast.success("Product uploaded successfully!");
       setTimeout(() => {
-        window.location.reload(); // Refresh to prevent duplicate uploads
+        window.location.reload();
       }, 2000);
     } catch (error) {
       toast.error("Failed to upload product!");

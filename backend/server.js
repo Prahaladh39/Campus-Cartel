@@ -10,20 +10,20 @@ const axios = require("axios");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// Initialize Firebase Admin SDK (Make sure to use your Firebase service account key)
+
 const serviceAccount = require("./serviceAccountKey.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
-// Store OTPs temporarily
+
 const otpStore = new Map();
 
 // Nodemailer setup (Use your Gmail or SMTP)
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER, // Your email
-    pass: process.env.EMAIL_PASS, // Your app password (not the actual Gmail password)
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
@@ -31,7 +31,7 @@ const transporter = nodemailer.createTransport({
 app.post("/send-otp", async (req, res) => {
   const { email } = req.body;
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
-  otpStore.set(email, otp); // Store OTP in memory for verification
+  otpStore.set(email, otp);
 
   // Send OTP email
   const mailOptions = {
@@ -57,13 +57,11 @@ app.post("/reset-password", async (req, res) => {
   }
 
   try {
-    // Get Firebase user by email
     const userRecord = await admin.auth().getUserByEmail(email);
 
-    // Update password in Firebase Authentication
     await admin.auth().updateUser(userRecord.uid, { password: newPassword });
 
-    otpStore.delete(email); // Remove OTP after use
+    otpStore.delete(email);
     res.json({ message: "Password updated successfully" });
   } catch (error) {
     res.status(500).json({ error: "Failed to reset password" });
@@ -93,8 +91,8 @@ app.post("/create-order", async (req, res) => {
       {
         headers: {
           "Content-Type": "application/json",
-          "x-client-id": process.env.CASHFREE_APP_ID, // ✅ Check if correct
-          "x-client-secret": process.env.CASHFREE_SECRET_KEY, // ✅ Check if correct
+          "x-client-id": process.env.CASHFREE_APP_ID,
+          "x-client-secret": process.env.CASHFREE_SECRET_KEY,
           "x-api-version": "2023-08-01",
         },
       }
