@@ -64,6 +64,10 @@ Campus-Cartel/
 │── .gitignore
 │── package-lock.json
 │── package.json
+
+🌍 Deployment
+Vercel: https://frontend-jwtm86dpm-prahaladhs-projects.vercel.app/
+
 ⚡ Installation & Setup
 1. Clone the Repository
 git clone https://github.com/Prahaladh39/Campus-Cartel.git
@@ -96,3 +100,6 @@ cd ../frontend
 vercel
 🤝 Contributing
 Feel free to fork, raise issues, or submit pull requests!
+
+📞 Contact
+For any queries or collaboration, connect with me on https://www.linkedin.com/in/slnprahaladh/
